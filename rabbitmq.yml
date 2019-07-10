@@ -18,7 +18,6 @@ services:
       - RABBITMQ_DEFAULT_VHOST=/
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./volume/rabbitmq/conf/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
       - ./volume/rabbitmq/data:/var/lib/rabbitmq:rw
     network_mode: "host"
     # cap_add:
