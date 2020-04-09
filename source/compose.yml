@@ -7,15 +7,12 @@ version: "2"
 services:
   # rabbitmq
   rabbitmq:
-    image: ${IMAGE_REPO}/${IMAGE_RABBITMQ}
+    image: "${IMAGE_RABBITMQ}"
     container_name: "rabbitmq.${PRODUCT_NAME}.${COMPANY_NAME}"
     hostname: "rabbitmq.${PRODUCT_NAME}.${COMPANY_NAME}"
     restart: "always"
-    environment:
-      - RABBITMQ_ERLANG_COOKIE=rabbitmq
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=admin
-      - RABBITMQ_DEFAULT_VHOST=/
+    env_file:
+      - ./rabbitmq.env
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./volume/rabbitmq/data:/var/lib/rabbitmq:rw
