@@ -56,9 +56,9 @@ cd "${base_dir}"
 
 # envirionment
 product_name="rabbitmq"
-product_version="3.7.24"
+product_version="3.7.26.1"
 images=(
-registry.cdjdgm.com/library/rabbitmq:3.7.24-extend
+registry.cdjdgm.com/library/rabbitmq:3.7.26.1-extend
 )
 temp_uuid="$(cat /proc/sys/kernel/random/uuid)"
 build_home="/tmp/build_${temp_uuid}"
@@ -157,8 +157,9 @@ fun_build() {
 
     chmod 744 "${build_home}/${product_name}"/*.sh
 
-    mkdir -p "${base_dir}/release"
-    tar -C "${build_home}" -czf "${base_dir}"/release/${product_name}-${product_version}.tgz "${product_name}"
+    #tar -C "${build_home}" -czf "${base_dir}"/${product_name}-${product_version}.tgz "${product_name}"
+    cd "${build_home}/${product_name}"
+    tar -czf "${base_dir}"/${product_name}-${product_version}.tgz .[!.]* *
 
     \rm -rf "${build_home}"
 

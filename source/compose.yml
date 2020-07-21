@@ -15,7 +15,9 @@ services:
       - ./rabbitmq.env
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - ./volume/rabbitmq/conf/enabled_plugins:/etc/rabbitmq/enabled_plugins:ro
       - ./volume/rabbitmq/data:/var/lib/rabbitmq:rw
+      - ./volume/rabbitmq/logs:/var/log/rabbitmq:rw
     network_mode: "host"
     extra_hosts:
       - "rabbitmq.${PRODUCT_NAME}.${COMPANY_NAME}:${HOST_IP}"
